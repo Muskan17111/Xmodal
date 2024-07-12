@@ -29,36 +29,27 @@ const XModal = () => {
     e.preventDefault();
 
     const { username, email, dob, phone } = formData;
-
-    if (!username) {
-      window.alert('Username is required.');
-      return;
+    if(!email.includes('@')){
+      alert('Invalid email. Please check your email address.');
+    }else if (phone.length !== 10) {
+      alert('Invalid phone number. Please enter a 10-digit phone number.');
+    } else if (new Date(dob).getTime() > Date.now()) {
+      alert('Invalid date of birth. Date of birth cannot be in the future.');
+    } else {
+      console.log(`Submitted Data:
+        Username: ${username},
+        Email: ${email},
+        Date of Birth: ${dob},
+        Phone: ${phone}`);
+      
+      setFormData({
+        username: '',
+        email: '',
+        dob: '',
+        phone: '',
+      });
+      setIsOpen(false);
     }
-
-    if (!email.includes('@')) {
-      window.alert('Invalid email. Please check your email address.');
-      return;
-    }
-
-    if (phone.length !== 10) {
-      window.alert('Invalid phone number. Please enter a 10-digit phone number.');
-      return;
-    }
-
-    const dobDate = new Date(dob);
-    const currentDate = new Date();
-    if (dobDate > currentDate) {
-      window.alert('Invalid date of birth. Date of birth cannot be in the future.');
-      return;
-    }
-
-    setFormData({
-      username: '',
-      email: '',
-      dob: '',
-      phone: '',
-    });
-    setIsOpen(false);
   };
 
   return (
@@ -78,6 +69,7 @@ const XModal = () => {
                   id="username"
                   value={formData.username}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div>
@@ -87,6 +79,7 @@ const XModal = () => {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div>
@@ -96,15 +89,17 @@ const XModal = () => {
                   id="dob"
                   value={formData.dob}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div>
                 <p>Phone Number:</p>
                 <input
-                  type="number"
+                  type="text"
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <button type="submit" className="submit-button">
@@ -119,6 +114,7 @@ const XModal = () => {
 };
 
 export default XModal;
+
 
 
 
