@@ -29,24 +29,24 @@ const XModal = () => {
     const { username, email, dob, phone } = formData;
 
     if (!username) {
-      alert('Username is required.');
+      window.alert('Username is required.');
       return;
     }
 
     if (!email.includes('@gmail.com')) {
-      alert('Invalid email. Please check your email address.');
+        window.alert('Invalid email. Please check your email address.');
       return;
     }
 
     if (phone.length !== 10 || isNaN(phone)) {
-      alert('Invalid phone number. Please enter a 10-digit phone number.');
+        window.alert('Invalid phone number. Please enter a 10-digit phone number.');
       return;
     }
 
     const dobDate = new Date(dob);
     const currentDate = new Date();
     if (dobDate > currentDate) {
-      alert('Invalid date of birth. Please enter a valid date.');
+        window.alert('Invalid date of birth. Please enter a valid date.');
       return;
     }
 
