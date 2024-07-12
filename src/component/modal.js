@@ -10,7 +10,7 @@ const XModal = () => {
     phone: '',
   });
   const [error, setError] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(false);
+
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -56,11 +56,6 @@ const XModal = () => {
       dob: '',
       phone: '',
     });
-    setShowSnackbar(true);
-
-    setTimeout(() => {
-      setShowSnackbar(false);
-    }, 3000);
   };
 
   return (
@@ -114,12 +109,6 @@ const XModal = () => {
               </button>
             </form>
           </div>
-        </div>
-      )}
-
-      {showSnackbar && (
-        <div className="snackbar">
-          Successfully submitted!
         </div>
       )}
     </div>
