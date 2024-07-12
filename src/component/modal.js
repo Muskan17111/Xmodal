@@ -9,11 +9,13 @@ const XModal = () => {
     dob: '',
     phone: '',
   });
-  const [error, setError] = useState('');
-
 
   const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const closeModal = (e) => {
+    if (e.target.className === 'modal') {
+      setIsOpen(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -33,20 +35,20 @@ const XModal = () => {
       return;
     }
 
-    if (!email.includes('@gmail.com')) {
-        window.alert('Invalid email. Please check your email address.');
+    if (!email.includes('@')) {
+      window.alert('Invalid email. Please check your email address.');
       return;
     }
 
-    if (phone.length !== 10 || isNaN(phone)) {
-        window.alert('Invalid phone number. Please enter a 10-digit phone number.');
+    if (phone.length !== 10) {
+      window.alert('Invalid phone number. Please enter a 10-digit phone number.');
       return;
     }
 
     const dobDate = new Date(dob);
     const currentDate = new Date();
     if (dobDate > currentDate) {
-        window.alert('Invalid date of birth. Please enter a valid date.');
+      window.alert('Invalid date of birth. Date of birth cannot be in the future.');
       return;
     }
 
@@ -56,6 +58,7 @@ const XModal = () => {
       dob: '',
       phone: '',
     });
+    setIsOpen(false);
   };
 
   return (
@@ -98,7 +101,7 @@ const XModal = () => {
               <div>
                 <p>Phone Number:</p>
                 <input
-                  type="text"
+                  type="number"
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
@@ -116,5 +119,6 @@ const XModal = () => {
 };
 
 export default XModal;
+
 
 
